@@ -1,2 +1,6 @@
-print("Hello World")
-print("updating commit")
+import numpy as np
+
+msg = "Roll a dice"
+print(msg)
+
+print(np.random.randint(1,9))
