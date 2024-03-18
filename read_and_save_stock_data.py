@@ -46,7 +46,7 @@ def get_stock(ticker, start_date, end_date, s_window, l_window):
         return None
 
 
-here = os.path.abspath('C:/Users/ahnaf/PythonProjects/CS677/tajwara_hw_1/')
+here = os.path.abspath(__file__)
 input_dir = os.path.abspath(os.path.join(here, os.pardir))
 tickers = ['TSLA']
 for ticker in tickers:
