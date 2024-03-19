@@ -3,7 +3,7 @@ Ahnaf Tajwar
 Class: CS 677
 Date: 3/16/23
 Homework Problem # 3
-Description of Problem (just a 1-2 line summary!):
+Description of Problem (just a 1-2 line summary!): This problem is to do the same as problem 1, but this time do it for each day for all 5 years together as well as SPY.
 """
 
 import os
@@ -26,6 +26,7 @@ for ticker in tickers:
 
         weekday_returns = defaultdict(list)
 
+        # Get returns for each day and append to dictionary
         for row in lines[1:]:
             fields = row.split(',')
             weekday = fields[4]
@@ -55,15 +56,6 @@ for ticker in tickers:
 
         # Output the table
         print(tabulate(table_data, headers=headers, tablefmt="grid"))
-
-        # # Write table data to a CSV file
-        # csv_file = f"agg_table_data_{ticker}.csv"
-        # with open(csv_file, "w", newline="") as file:
-        #     writer = csv.writer(file)
-        #     writer.writerow(headers)  # Write headers
-        #     writer.writerows(table_data)  # Write table data
-
-        # print(f"Table data written to {csv_file}.")
 
     except Exception as e:
         print(e)

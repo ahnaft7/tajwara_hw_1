@@ -3,7 +3,8 @@ Ahnaf Tajwar
 Class: CS 677
 Date: 3/16/23
 Homework Problem # 6
-Description of Problem (just a 1-2 line summary!):
+Description of Problem (just a 1-2 line summary!): This problem is to calculate the total ending balance after 5 years similar to problem 4,
+    but also missing the highest 10 days, taking the lowest 10 days, or missing the highest 5 days and taking the lowest 5 days.
 """
 
 import os
@@ -41,9 +42,6 @@ for ticker in tickers:
         # Exclude the top 10 days with the highest return
         excluded_days = sorted_returns_desc[:10]
         included_days = sorted_returns_asc[:10]
-
-        # excluded_days_5 = sorted_returns_desc[:5]
-        # included_days_5 = sorted_returns_asc[:5]
 
         for row in lines[1:]:
             fields = row.split(',')

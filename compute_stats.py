@@ -3,7 +3,7 @@ Ahnaf Tajwar
 Class: CS 677
 Date: 3/16/23
 Homework Problem # 1-2
-Description of Problem (just a 1-2 line summary!):
+Description of Problem (just a 1-2 line summary!): This problem is to compute the mean and standard deviation for all, positive, and negative returns for each day in each year. The results are added to a table.
 """
 
 import os
@@ -11,6 +11,7 @@ import csv
 from collections import defaultdict
 import statistics
 from tabulate import tabulate
+from math import sqrt
 
 ticker='TSLA'
 here = os.path.abspath(__file__)
@@ -26,6 +27,7 @@ try:
 
     day_year_returns = defaultdict(lambda: defaultdict(list))
 
+    # Get returns for each day in each year and append to dictionary
     for row in lines[1:]:
         fields = row.split(',')
         year = int(fields[1])
@@ -41,6 +43,14 @@ try:
         day_year_statistics[year] = {}
         for weekday, returns in days_data.items():
             mean_returns = sum(returns) / len(returns)
+
+            # Calculate the sum of squares
+            # sum_squares = sum((val - mean_returns) ** 2 for val in returns)
+
+            # Calculate the population standard deviation
+            # std_dev = sqrt(sum_squares / len(returns))
+
+            # Calculating std_dev using statistics library
             std_dev = statistics.stdev(returns)
             neg_returns = [] 
             pos_returns = []
@@ -53,6 +63,12 @@ try:
             pos_mean = sum(pos_returns) / len(pos_returns)
             neg_std_dev = statistics.stdev(neg_returns)
             pos_std_dev = statistics.stdev(pos_returns)
+
+            # sum_squares_neg = sum((val - neg_mean) ** 2 for val in neg_returns)
+            # sum_squares_pos = sum((val - pos_mean) ** 2 for val in pos_returns)
+            # neg_std_dev = sqrt(sum_squares_neg / len(neg_returns))
+            # pos_std_dev = sqrt(sum_squares_pos / len(pos_returns))
+
             day_year_statistics[year][weekday] = (mean_returns, std_dev, len(neg_returns), neg_mean, neg_std_dev, len(pos_returns), pos_mean, pos_std_dev)
 
     # Print the mean return and standard deviation for each day in each year
@@ -66,17 +82,6 @@ try:
 
     # Output the table
     print(tabulate(table_data, headers=headers, tablefmt="grid"))
-
-    # # Write table data to a CSV file
-    # csv_file = "table_data.csv"
-    # with open(csv_file, "w", newline="") as file:
-    #     writer = csv.writer(file)
-    #     writer.writerow(headers)  # Write headers
-    #     writer.writerows(table_data)  # Write table data
-
-    # print(f"Table data written to {csv_file}.")
-
-
     
 except Exception as e:
     print(e)

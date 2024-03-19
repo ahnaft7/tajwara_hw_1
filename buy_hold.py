@@ -3,7 +3,7 @@ Ahnaf Tajwar
 Class: CS 677
 Date: 3/16/23
 Homework Problem # 5
-Description of Problem (just a 1-2 line summary!):
+Description of Problem (just a 1-2 line summary!): This problem is to calculate the total ending balance after 5 years if everyday is traded on starting with $100.
 """
 
 import os
@@ -23,10 +23,12 @@ for ticker in tickers:
             lines = f.read().splitlines()
         print('opened file for ticker: ', ticker)
 
+        # Get returns
         for row in lines[1:]:
             fields = row.split(',')
             return_value = float(fields[13])
             
+            # Make the trade everyday
             current_amount *= (1 + return_value)
 
         print(f"Total amount at the end date: ${current_amount:.2f}")
